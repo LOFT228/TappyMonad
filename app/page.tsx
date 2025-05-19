@@ -1,35 +1,43 @@
 import { Metadata } from "next";
-import App from "@/components/pages/app";
-import { APP_URL } from "@/lib/constants";
+import Link from "next/link";
 
-const frame = {
-  version: "next",
-  imageUrl: `${APP_URL}/images/feed.png`,
-  button: {
-    title: "Launch Template",
-    action: {
-      type: "launch_frame",
-      name: "Monad Farcaster MiniApp Template",
-      url: APP_URL,
-      splashImageUrl: `${APP_URL}/images/splash.png`,
-      splashBackgroundColor: "#f7f7f7",
-    },
-  },
+export const metadata: Metadata = {
+  title: "TappyMonad",
+  description: "Click and earn MON!",
 };
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Monad Farcaster MiniApp Template",
-    openGraph: {
-      title: "Monad Farcaster MiniApp Template",
-      description: "A template for building mini-apps on Farcaster and Monad",
-    },
-    other: {
-      "fc:frame": JSON.stringify(frame),
-    },
-  };
-}
+export default function Page() {
+  // Використовуємо URL безпосередньо з process.env
+  const appUrl = process.env.NEXT_PUBLIC_URL || "https://monad-clicker.app";
 
-export default function Home() {
-  return <App />;
+  const frame = {
+    version: "vNext",
+    image: `${appUrl}/images/feed.png`,
+    buttons: [
+      {
+        label: "Start clicking",
+        action: "post",
+        target: `${appUrl}/clicker`
+      },
+    ],
+  };
+
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center w-full max-w-md mx-auto bg-gradient-to-b from-[#2d0036] to-[#1a0022] p-0 relative">
+      <div className="flex-1 flex flex-col items-center justify-center w-full px-4">
+        <h1 className="text-4xl font-bold mb-8 text-white drop-shadow">TappyMonad</h1>
+        <p className="text-xl mb-4 text-white/90">Click and earn MON!</p>
+        <Link 
+          href="/clicker" 
+          className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-xl font-medium text-xl transition-colors shadow-lg"
+        >
+          Start game
+        </Link>
+      </div>
+      <script
+        type="application/json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(frame) }}
+      />
+    </div>
+  );
 }

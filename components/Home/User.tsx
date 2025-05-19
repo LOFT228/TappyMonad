@@ -9,14 +9,15 @@ export function User() {
       <div className="flex flex-row space-x-4 justify-start items-start">
         {context?.user ? (
           <>
-            {context?.user?.pfpUrl && (
+            {context?.user?.pfpUrl ? (
               <img
-                src={context?.user?.pfpUrl}
-                className="w-14 h-14 rounded-full"
-                alt="User Profile Picture"
-                width={56}
-                height={56}
+                src={context.user.pfpUrl}
+                alt="User Avatar"
+                className="w-8 h-8 rounded-full object-cover mr-2 border border-white"
+                draggable={false}
               />
+            ) : (
+              <div className="w-8 h-8 rounded-full bg-gray-200 mr-2" />
             )}
             <div className="flex flex-col justify-start items-start space-y-2">
               <p className="text-sm text-left">
