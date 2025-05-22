@@ -1,5 +1,5 @@
 import { useFrame } from "../components/farcaster-provider";
-import { FrameContext } from "@farcaster/frame-core/dist/context";
+import { FrameContext } from '@farcaster/frame-core';
 import sdk from "@farcaster/frame-sdk";
 
 // Define specific types for each context
