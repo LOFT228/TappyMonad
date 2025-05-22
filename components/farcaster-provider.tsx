@@ -1,6 +1,6 @@
 "use client";
 
-import { FrameContext } from "@farcaster/frame-core/dist/context";
+import { FrameContext } from '@farcaster/frame-core';
 import sdk from "@farcaster/frame-sdk";
 import {
   createContext,
